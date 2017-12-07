@@ -2,6 +2,22 @@ body {
   padding-bottom: 100px;
   background-image: url(http://wmh.github.io/circular-slides-generator/static/img/noise.png);
 }
+ .iconDetails {
+ margin-left:2%;
+float:left; 
+height:40px;
+width:40px;	
+} 
+
+.container2 {
+	width:100%;
+	height:auto;
+	padding:1%;
+}
+
+h4 {
+    margin:0px;
+}
 h1, h2, h3 {
   padding-top: 20px;
   font-family: 'Amaranth', sans-serif;
