@@ -1,7 +1,7 @@
 $(function() {
    $('#demo').scrollbox();
 
-	/*var response = [{
+/*	var response = [{
 		"name": "test asdasdkasjdnkajsnd",
 		"description": "test desc asdasdkasjdnkajsnd",
 		"time": "2013-12-03",
@@ -37,7 +37,7 @@ $(function() {
 			    html += '<div style="margin-left:60px;">';
 			    html += '<p>'+ value.name +'</p><br/>';
 			    html += '<p>'+ value.description +'</p><br/>';
-			    html += '<p>'+ value.time +'</p>';
+			    html += '<p>'+ momemt(value.time).fromNow() +'</p>';
 				html += '</div>';
 			    html += '</div>';
 			    html += '</a></li>';
