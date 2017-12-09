@@ -1,27 +1,52 @@
 $(function() {
    $('#demo').scrollbox();
 
-/*	var response = [{
+	/*var response = [{
 		"name": "test asdasdkasjdnkajsnd",
 		"description": "test desc asdasdkasjdnkajsnd",
-		"time": "2013-12-03",
+		"time": "Sat, 09 Dec 2017 11:44:00 GMT",
 		"image_url":"https://cdn.shopclues.com/images/thumbnails/79584/200/200/124480375JuicerSlicerComboFreeMultiCutterwithPeeler0011501851537.jpg",
 		"product_url":"http://www.shopclues.com/srk-standard-kitchen-combo-fruit-juicer-with-6-in-1-slicer-and-multi-veg-cutter-126888745.html",
 	},{
 		"name": "test asdasdkasjdnkajsnd",
 		"description": "test desc asdasdkasjdnkajsnd",
-		"time": "2013-12-03",
+		"time": "Sat, 09 Dec 2017 11:44:00 GMT",
 		"image_url":"https://cdn.shopclues.com/images/thumbnails/79584/200/200/124480375JuicerSlicerComboFreeMultiCutterwithPeeler0011501851537.jpg",
 		"product_url":"http://www.shopclues.com/srk-standard-kitchen-combo-fruit-juicer-with-6-in-1-slicer-and-multi-veg-cutter-126888745.html",
 	},{
 		"name": "test asdasdkasjdnkajsnd",
 		"description": "test desc asdasdkasjdnkajsnd",
-		"time": "2013-12-03",
+		"time": "Sat, 09 Dec 2017 11:44:00 GMT",
 		"image_url":"https://cdn.shopclues.com/images/thumbnails/79584/200/200/124480375JuicerSlicerComboFreeMultiCutterwithPeeler0011501851537.jpg",
 		"product_url":"http://www.shopclues.com/srk-standard-kitchen-combo-fruit-juicer-with-6-in-1-slicer-and-multi-veg-cutter-126888745.html",
 	}
 ]*/
-	
+	function truncateText(string, targetCharacterLength) {
+		var length = string.length;
+		if (length < targetCharacterLength) {
+		  return (string)
+		} else {
+		  var shortenedString = string.slice(0, targetCharacterLength);
+		  var tempshortenedString = shortenedString.slice(0, shortenedString.lastIndexOf(' '));
+
+		  var lastMarkupBegin = 0;
+		  var lastMarkupEnds = 0;
+		  try { 
+		    lastMarkupBegin = tempshortenedString.lastIndexOf("<a");
+		    lastMarkupEnds = tempshortenedString.lastIndexOf("/a>");
+		  } catch (err) {}
+		  //alert(lastMarkupEnds);
+		  if (lastMarkupBegin != -1) { // has an opening anchor tag
+		    if (lastMarkupEnds == -1) { // not having an closing tag
+		      tempshortenedString = tempshortenedString.slice(0, lastMarkupBegin);
+		      //alert(tempshortenedString);
+		      return tempshortenedString + '... ';
+		    }
+		  }
+		  return shortenedString + '... '
+		}
+	}
+
 	$.ajax({
 		type : "GET",
 		url : "http://127.0.0.1:5000/roller/fake",
@@ -36,7 +61,7 @@ $(function() {
 			    html += '<div>';
 			    html += '<img src="'+value.image_url+'" class="iconDetails"/></div>';
 			    html += '<div style="margin-left:60px;">';
-			    html += '<p>'+ value.name +'</p><br/>';
+			    html += '<h6>'+ truncateText(value.name,20) +'</h6><br/>';
 			    html += '<p>'+ value.description +'</p><br/>';
 			    html += '<p>'+ moment(value.time).fromNow() +'</p>';
 				html += '</div>';
