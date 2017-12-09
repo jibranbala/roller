@@ -24,7 +24,8 @@ $(function() {
 	
 	$.ajax({
 		type : "GET",
-		url : "",
+		url : "http://127.0.0.1:5000/roller/fake",
+		crossDomain:'true',
 //		data : JSON.stringify(that.params),
 		contentType : 'application/json',
 		success : function(response) {
@@ -37,7 +38,7 @@ $(function() {
 			    html += '<div style="margin-left:60px;">';
 			    html += '<p>'+ value.name +'</p><br/>';
 			    html += '<p>'+ value.description +'</p><br/>';
-			    html += '<p>'+ momemt(value.time).fromNow() +'</p>';
+			    html += '<p>'+ moment(value.time).fromNow() +'</p>';
 				html += '</div>';
 			    html += '</div>';
 			    html += '</a></li>';
